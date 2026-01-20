@@ -1,29 +1,36 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    ft_different_error.py                              :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: bokim <bokim@student.42.fr>                +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/01/12 13:48:42 by bokim             #+#    #+#              #
-#    Updated: 2026/01/12 14:00:09 by bokim            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+def garden_operations(error_type):
+    if error_type == "Value":
+        int("abc")
+    elif error_type == "ZeroDivision":
+        1/0
+    elif error_type == "FilenotFound":
+        open("missing.txt")
+    elif error_type == "Key":
+        tmp = {}
+        print(tmp["missing_plant"])
 
-def garden_operations():
-	try:
-		tmp = int("abc")
-	except ValueError:
-		print("Caught Value Error: invalid literal for int()")
-	try:
-		tmp = 1/0
-	except ZeroDivisionError:
-		print("Caught ZeroDivisionError: division by zero")
-	try: 
-	
+
 def test_error_types():
-	print("=== Garden Error Types Demo ===\n")
-	print("\n Testing Value error...")
-	garden_operations()
+    print("=== Garden Error Types Demo ===\n")
+    for error in ["Value", "ZeroDivision", "FilenotFound", "Key"]:
+        try:
+            print(f"Testing {error}Error...")
+            garden_operations(error)
+        except ValueError:
+            print("Caught ValueError: invalid literal for int()n\n")
+        except ZeroDivisionError:
+            print("Caught ZeroDivisionError: division by zero\n")
+        except FileNotFoundError:
+            print("Caught FileNotFoundError: No such file 'missing.txt'\n")
+        except KeyError:
+            print("Caught KeyError: 'missing_plant'\n")
+    print("Testing multiple errors together...")
+    try:
+        garden_operations("file")
+    except (ValueError, ZeroDivisionError, FileNotFoundError, KeyError):
+        print("Caught an error, but program continues !\n")
+    print("\nAll error types tested successfully!")
 
-	print("\nAll error types tested successfully!")
+
+if __name__ == "__main__":
+    test_error_types()
