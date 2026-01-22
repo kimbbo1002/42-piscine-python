@@ -1,64 +1,54 @@
 class GardenError(Exception):
     def __init__(self, message):
+        self.message = message
         super().__init__(f"Caught a garden error: {message}")
 
 
 class PlantError(GardenError):
-    def __init__(self, name, last_water):
+    def __init__(self, name):
         self.name = name
-        self.last_water = last_water
-        self.message = "Caught PlantError: "
-        super().__init__(f"The {self.name} plant is wilting!")
+        self.detail = f"The {self.name} plant is wilting!"
+        super().__init__(self.detail)
 
     def error_message(self):
-        return f"{self.message}The {self.name} is plant wilting!"
+        return f"Plant Error: {self.detail}"
 
 
 class WaterError(GardenError):
-    def __init__(self, name, water_left):
-        self.name = name
-        self.water_left = water_left
-        self.message = "Caught WaterError: "
-        super().__init__("Not enough water in the tank!")
+    def __init__(self):
+        self.detail = "Not enough water in the tank!"
+        super().__init__(self.detail)
 
     def error_message(self):
-        return f"{self.message}Not enough water in the tank!"
+        return f"Water Error: {self.detail}"
 
 
-def check_garden(name, last_water, water_left, garden: bool):
+def check_garden(name, last_water, water_left):
     if last_water >= 5:
-        if garden:
-            raise GardenError(
-                f"{PlantError(name, last_water).error_message()}"
-            )
-        raise PlantError(name, last_water)
+        raise PlantError(name)
     if water_left <= 0:
-        if garden:
-            raise GardenError(
-                f"{WaterError(name, water_left).error_message()}"
-            )
-        raise WaterError(name, water_left)
+        raise WaterError()
 
 
 if __name__ == "__main__":
-    print("=== Custom Garden Errors Demo ===\n")
-    print("Testing PlantError...")
+    print("=== Custom Garden Errors Demo ===")
+    print("\nTesting PlantError...")
     try:
-        check_garden("tomato", 7, 2, False)
+        check_garden("tomato", 7, 2)
     except PlantError as e:
-        print(f"{e.error_message()}\n")
-    print("Testing WaterError...")
+        print(e.error_message())
+    print("\nTesting WaterError...")
     try:
-        check_garden("cactus", 3, 0, False)
+        check_garden("cactus", 3, 0)
     except WaterError as e:
-        print(f"{e.error_message()}\n")
-    print("Testing catching all garden errors...")
+        print(e.error_message())
+    print("\nTesting catching all garden errors...")
     try:
-        check_garden("tomato", 7, 2, False)
-    except (PlantError, WaterError) as e:
-        print(f"{e}")
+        check_garden("tomato", 7, 2)
+    except GardenError as e:
+        print(e)
     try:
-        check_garden("cactus", 3, 0, False)
-    except (PlantError, WaterError) as e:
-        print(f"{e}\n")
-    print("All custom error types work correctly!")
+        check_garden("cactus", 3, 0)
+    except GardenError as e:
+        print(e)
+    print("\nAll custom error types work correctly!")
