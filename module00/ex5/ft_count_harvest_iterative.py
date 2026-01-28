@@ -1,4 +1,4 @@
-def ft_count_harvest_iterative():
+def ft_count_harvest_iterative() -> None:
     print("Days until harvest: 5")
     for i in range(1, 5):
         print(f"Day {i}")
