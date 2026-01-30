@@ -1,4 +1,4 @@
-import alchemy.elements
+import alchemy
 from alchemy.elements import create_fire
 from alchemy.potions import healiing_potion as heal
 from alchemy.potions import strength_potion

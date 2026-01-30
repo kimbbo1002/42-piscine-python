@@ -1,4 +1,4 @@
-import alchemy.elements
+import alchemy
 
 def main() -> None:
     print("\n=== Sacred Scroll Mastery ===\n")
@@ -11,7 +11,7 @@ def main() -> None:
     )
     print("Testing package-level acess (controlled by __init__.py):")
     print(
-        f"alchemy.create_fire(): {alchemy.create_fire()}"
+        f"alchemy.create_fire(): {alchemy.create_fire()}\n"
         f"alchemy.create_water(): {alchemy.create_water()}"
     )
     try:
