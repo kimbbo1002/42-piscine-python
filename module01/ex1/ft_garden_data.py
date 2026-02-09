@@ -5,18 +5,21 @@ class Plant:
         self.height = height
         self.age = age
 
+    def display_info(self):
+        print(
+            f"{self.name}: {self.height}cm, {self.age} days old"
+        )
+
 
 def main() -> None:
     """This main function displays the flow"""
     rose = Plant("Rose", 25, 30)
     sun = Plant("Sunflower", 80, 45)
     cact = Plant("Cactus", 15, 120)
-    print(
-        "=== Garen Plant Registry ===\n"
-        f"{rose.name}: {rose.height}cm, {rose.age} days old\n"
-        f"{sun.name}: {sun.height}cm, {sun.age} days old\n"
-        f"{cact.name}: {cact.height}cm, {cact.age} days old"
-    )
+    print("=== Garen Plant Registry ===")
+    rose.display_info()
+    sun.display_info()
+    cact.display_info()
 
 
 if __name__ == "__main__":

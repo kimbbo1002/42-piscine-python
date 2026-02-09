@@ -1,5 +1,5 @@
 class SecurePlant:
-    def __init__(self, name: str, height: int = 0, age: int =0) -> None:
+    def __init__(self, name: str, height: int = 0, age: int = 0) -> None:
         """This function initiates a plant"""
         self.name = name
         self.height = height
@@ -14,7 +14,7 @@ class SecurePlant:
         else:
             print(
                 f"\nInvalid operation attempted: height {tmp_height}cm "
-                "[REJECTED]"
+                "[REJECTED]\n"
                 "Security: Negative height rejected\n"
             )
 
@@ -29,9 +29,9 @@ class SecurePlant:
             print(f"Age updated: {self.age} days [OK]")
         else:
             print(
-                f"Invalid operation attempted: height {tmp_age}cm "
+                f"Invalid operation attempted: age {tmp_age} days "
                 "[REJECTED]\n"
-                "Security: Negative height rejected"
+                "Security: Negative age rejected\n"
             )
 
     def get_age(self) -> int:
@@ -46,10 +46,12 @@ def main() -> None:
     rose.set_height(25)
     rose.set_age(30)
     rose.set_height(-5)
+    rose.set_age(-2)
     print(
         f"Current plant: {rose.name} ({rose.get_height()}cm, "
         f"{rose.get_age()} days)"
     )
+
 
 if __name__ == "__main__":
     main()

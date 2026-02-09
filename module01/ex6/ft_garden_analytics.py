@@ -1,6 +1,6 @@
 class Plant():
-    """This function initiates a plant"""
     def __init__(self, name, height):
+        """This function initiates a plant"""
         self.name = name
         self.height = height
         self.kind = "regular"
@@ -15,8 +15,8 @@ class Plant():
 
 
 class FloweringPlant(Plant):
-    """This function initiates a flowering plant"""
     def __init__(self, name, height, color):
+        """This function initiates a flowering plant"""
         super().__init__(name, height)
         self.color = color
         self.kind = "flowering"
@@ -28,8 +28,8 @@ class FloweringPlant(Plant):
 
 
 class PrizeFlower(FloweringPlant):
-    """This function initiates a  prize flower"""
     def __init__(self, name, height, color, points):
+        """This function initiates a  prize flower"""
         super().__init__(name, height, color)
         self.points = points
         self.kind = "prize"
@@ -104,6 +104,7 @@ class GardenManager():
         for plant in self.plants:
             plant.grow()
             self.total_growth += 1
+            print(f"{plant.name} grew 1cm")
 
     @staticmethod
     def validate_height(plants: list):
@@ -126,7 +127,6 @@ class GardenManager():
             "\nHeight Validation test: "
             f"{GardenManager.validate_height(self.plants)}"
         )
-        GardenManager.create_garden_network()
 
 
 def main() -> None:
@@ -137,17 +137,20 @@ def main() -> None:
     rose = FloweringPlant("Rose", 26, "red")
     sun = PrizeFlower("Sunflower", 51, "yellow", 10)
 
+    bob = GardenManager("Bob")
+    cactus = PrizeFlower("Cactus", 91, "green", 92)
+    bob.add_plant(cactus)
+
     alice.add_plant(oak)
     alice.add_plant(rose)
     alice.add_plant(sun)
 
     alice.manage_growth()
 
-    bob = GardenManager("Bob")
-    cactus = PrizeFlower("Cactus", 91, "green", 92)
-    bob.add_plant(cactus)
-
     alice.display_report()
+
+    GardenManager.create_garden_network()
+
 
 if __name__ == "__main__":
     main()

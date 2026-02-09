@@ -1,9 +1,12 @@
 class Plant:
+    total = 0
+
     def __init__(self, name, height, age) -> None:
         """This function initiates a plant"""
         self.name = name
         self.height = height
         self.age = age
+        Plant.total += 1
         print(f"Created: {self.name} ({height}cm, {age} days)")
 
 
@@ -16,12 +19,10 @@ def main() -> None:
         ("Sunflower", 80, 45),
         ("Fern", 15, 120)
     ]
-    count = 0
     print("=== Plant Factory Output ===")
     for data in plant_to_create:
         Plant(*data)
-        count += 1
-    print(f"\nTotal plants created: {count}")
+    print(f"\nTotal plants created: {Plant.total}")
 
 
 if __name__ == "__main__":
