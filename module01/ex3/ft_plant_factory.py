@@ -1,23 +1,28 @@
 class Plant:
-    def __init__(self, name, height, age):
-        self.name = name.capitalize()
+    def __init__(self, name, height, age) -> None:
+        """This function initiates a plant"""
+        self.name = name
         self.height = height
         self.age = age
         print(f"Created: {self.name} ({height}cm, {age} days)")
 
 
-plant_to_create = [
-    ("rose", 25, 30),
-    ("oak", 200, 365),
-    ("cactus", 5, 90),
-    ("sunflower", 80, 45),
-    ("fern", 15, 120)
-]
-
-if __name__ == "__main__":
-    print("=== Plant Factory Output ===")
+def main() -> None:
+    """This main function displays the flow"""
+    plant_to_create = [
+        ("Rose", 25, 30),
+        ("Oak", 200, 365),
+        ("Cactus", 5, 90),
+        ("Sunflower", 80, 45),
+        ("Fern", 15, 120)
+    ]
     count = 0
+    print("=== Plant Factory Output ===")
     for data in plant_to_create:
         Plant(*data)
         count += 1
     print(f"\nTotal plants created: {count}")
+
+
+if __name__ == "__main__":
+    main()
