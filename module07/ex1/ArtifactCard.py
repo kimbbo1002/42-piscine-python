@@ -1,0 +1,32 @@
+from ex0.Card import Card
+
+
+class ArtifactCard(Card):
+    def __init__(self, name: str, cost: int, rarity: str, durability: int, effect: str):
+        super().__init__(name, cost, rarity)
+        self.durability = durability
+        self.effect = effect
+        self.type = "Artifact"
+        self.in_play = False
+    
+    def play(self, game_state: dict) -> dict:
+        if game_state["playing"] == False:
+            raise ValueError("[ERROR] Game has not started yet!")
+        self.in_play = True
+        return {
+            "card_played": self.name,
+            "mana_used": self.cost,
+            "effect": f"Permanent: {self.effect}"
+        }
+
+    def activate_ability(self) -> dict:
+        if not self.in_play:
+            return {"error": f"{self.name} is not in play"}
+        if not self.durability >= 0:
+            return {"error": f"{self.name} has no durability left"}
+        self.durability -= 1
+        return {
+            "artifact": self.name,
+            "effect": self.effect,
+            "durability_remaining": self.durability
+        }
