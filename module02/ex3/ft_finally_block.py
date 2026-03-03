@@ -1,8 +1,4 @@
-def valid_plant(plant_name):
-    return plant_name in ["tomato", "lettuce", "carrots"]
-
-
-def ft_len(list):
+def ft_len(list: list) -> int:
     count = 0
     for thing in list:
         count += 1
@@ -15,7 +11,7 @@ def water_plants(plant_list: list):
     i = 0
     try:
         for plant in plant_list:
-            if not valid_plant(plant):
+            if not plant in ["tomato", "lettuce", "carrots"]:
                 raise ValueError(
                     f"Error: Cannot water {plant} - invalid plant"
                 )
@@ -29,7 +25,7 @@ def water_plants(plant_list: list):
             print("Watering completed successfully!")
 
 
-def test_watering_system():
+def main() -> None:
     good = ["tomato", "lettuce", "carrots"]
     bad = ["tomato", "None"]
     print("=== Garden Watering System ===")
@@ -41,4 +37,4 @@ def test_watering_system():
 
 
 if __name__ == "__main__":
-    test_watering_system()
+    main()

@@ -1,5 +1,6 @@
 import sys
 
+
 def ft_command_quest() -> None:
     print("=== Command Quest ===")
     length = len(sys.argv)
@@ -13,3 +14,6 @@ def ft_command_quest() -> None:
             print(f"Argument {i}: {arg}")
             i += 1
     print(f"Total arguments: {length}")
+
+
+ft_command_quest()

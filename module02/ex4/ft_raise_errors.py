@@ -1,4 +1,4 @@
-def check_plant_health(plant_name, water_level, sunlight_hours):
+def check_plant_health(plant_name, water_level, sunlight_hours) -> None:
     try:
         if plant_name == "":
             raise ValueError("Error: Plant name cannot be emtpy!")
@@ -23,11 +23,11 @@ def check_plant_health(plant_name, water_level, sunlight_hours):
         print(e)
 
 
-def test_plant_checks():
+def main() -> None:
     print("=== Garden Plant Health Checker ===\n")
     print("Testing good values...")
     check_plant_health("tomato", 3, 6)
-    print("\nTesting empty plant name")
+    print("\nTesting empty plant name...")
     check_plant_health("", 3, 5)
     print("\nTesting bad water level...")
     check_plant_health("tomato", 15, 3)
@@ -37,4 +37,4 @@ def test_plant_checks():
 
 
 if __name__ == "__main__":
-    test_plant_checks()
+    main()

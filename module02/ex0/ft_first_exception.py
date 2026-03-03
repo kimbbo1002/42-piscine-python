@@ -1,4 +1,7 @@
-def check_temperature(temp_str):
+from typing import Any
+
+
+def check_temperature(temp_str: Any) -> None:
     try:
         temp = int(temp_str)
         if 0 <= temp <= 40:
@@ -11,7 +14,7 @@ def check_temperature(temp_str):
         print(f"Error: {temp_str} is not a valid number!")
 
 
-def test_temperature_input():
+def main() -> None:
     print("=== Garden Temperature Checker ===\n")
     print("Testing temperature: 25")
     check_temperature("25")
@@ -24,4 +27,5 @@ def test_temperature_input():
     print("\nAll tests completed - program didn't crash!")
 
 
-test_temperature_input()
+if __name__ == "__main__":
+    main()

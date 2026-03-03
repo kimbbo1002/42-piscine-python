@@ -1,4 +1,4 @@
-def garden_operations(error_type):
+def garden_operations(error_type: str) -> None:
     if error_type == "Value":
         int("abc")
     elif error_type == "ZeroDivision":
@@ -10,14 +10,14 @@ def garden_operations(error_type):
         print(tmp["missing_plant"])
 
 
-def test_error_types():
+def main() -> None:
     print("=== Garden Error Types Demo ===\n")
     for error in ["Value", "ZeroDivision", "FilenotFound", "Key"]:
         try:
             print(f"Testing {error}Error...")
             garden_operations(error)
         except ValueError:
-            print("Caught ValueError: invalid literal for int()n\n")
+            print("Caught ValueError: invalid literal for int()\n")
         except ZeroDivisionError:
             print("Caught ZeroDivisionError: division by zero\n")
         except FileNotFoundError:
@@ -26,11 +26,11 @@ def test_error_types():
             print("Caught KeyError: 'missing_plant'\n")
     print("Testing multiple errors together...")
     try:
-        garden_operations("file")
+        garden_operations("Value")
     except (ValueError, ZeroDivisionError, FileNotFoundError, KeyError):
-        print("Caught an error, but program continues !\n")
+        print("Caught an error, but program continues!")
     print("\nAll error types tested successfully!")
 
 
 if __name__ == "__main__":
-    test_error_types()
+    main()

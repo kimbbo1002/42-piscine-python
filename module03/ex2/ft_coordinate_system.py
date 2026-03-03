@@ -37,6 +37,7 @@ def ft_coordinate_system() -> None:
     ex1 = (10, 20, 5)
     print(f"Position created: {ex1}")
     get_dist(ex1)
+
     ex2 = "3,4,0"
     tup = parse_args(ex2)
     try:

@@ -22,8 +22,8 @@ class GardenManager():
     def water_plants():
         print("Opening watering system")
         for plant in GardenManager.plants:
-            print(f"Watering {plant.name} - success")
             plant.water += 1
+            print(f"Watering {plant.name} - success")
         print("Closing watering system (cleanup)")
 
     def check_health():
@@ -58,27 +58,33 @@ class GardenManager():
 
 
 class GardenError(Exception):
-    def __init__(self, message):
+    def __init__(self, message: str) -> None:
         self.message = message
-        super().__init__(f"Caught GardenError: {message}")
+        super().__init__(message)
+    
+    def base_str(self) -> str:
+        return f"Caught GardenError: {self.message}"
+
+    def __str__(self) -> str:
+        return f"Caught GardenError: {self.message}"
 
 
 class PlantError(GardenError):
-    def __init__(self, name):
+    def __init__(self, name: str) -> None:
         self.name = name
         self.detail = f"The {self.name} plant is wilting!"
         super().__init__(self.detail)
 
-    def error_message(self):
+    def __str__(self) -> str:
         return f"Plant Error: {self.detail}"
 
 
 class WaterError(GardenError):
-    def __init__(self):
+    def __init__(self) -> None:
         self.detail = "Not enough water in the tank!"
         super().__init__(self.detail)
 
-    def error_message(self):
+    def __str__(self) -> str:
         return f"Water Error: {self.detail}"
 
 
@@ -90,7 +96,7 @@ def check_garden(name, last_water, water_left):
     return "No Garden Errors!"
 
 
-def test_garden_management():
+def main():
     print("=== Garden Management System ===")
     print("\nAdding plants to garden...")
     GardenManager.add_plant("tomato", 4, 8)
@@ -105,11 +111,11 @@ def test_garden_management():
     try:
         check_garden("rose", 3, water_tank)
     except GardenError as e:
-        print(e)
+        print(e.base_str())
     finally:
         print("System recovered and continuing...")
     print("\nGarden management system test complete!")
 
 
 if __name__ == "__main__":
-    test_garden_management()
+    main()
