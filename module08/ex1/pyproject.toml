@@ -1,0 +1,5 @@
+[tool.poetry.dependencies]
+pandas
+numpy
+requests
+matplotlib
