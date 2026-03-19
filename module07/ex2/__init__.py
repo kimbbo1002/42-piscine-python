@@ -1,2 +1,3 @@
-from .Combatable import Combatable
-from .Magical import Magical
+from .Combatable import Combatable  # noqa F401
+from .Magical import Magical  # noqa F401
+from .EliteCard import EliteCard, Rarity, CardType  # noqa F401

@@ -2,23 +2,29 @@ from ex0.Card import Card
 
 
 class CreatureCard(Card):
-    def __init__(self, name: str, cost: int, rarity: str, attack: int, health: int):
-        if attack <= 0 or health <= 0:
-            raise ValueError("Attack and Health need to be higher than 0")
+    def __init__(
+            self, name: str,
+            cost: int, rarity: str,
+            attack: int, health: int
+    ) -> None:
         super().__init__(name, cost, rarity)
+        if attack <= 0:
+            raise ValueError("Attack must be a positive integer.")
+        if health <= 0:
+            raise ValueError("Health must be a positive integer.")
         self.attack = attack
         self.health = health
         self.type = "Creature"
-    
+
     def play(self, game_state: dict) -> dict:
-        if game_state["playing"] == False:
+        if game_state["playing"] is False:
             raise ValueError("[ERROR] Game has not started yet!")
         return {
             "card_played": self.name,
             "mana_used": self.cost,
             "effect": "Creature summoned to battlefield"
         }
-    
+
     def attack_target(self, target: str) -> dict:
         return {
             "attacker": self.name,
@@ -26,7 +32,7 @@ class CreatureCard(Card):
             "damage_dealt": self.attack,
             "combat_resolved": True
         }
-    
+
     def get_card_info(self) -> dict:
         info = super().get_card_info()
         info["type"] = self.type
